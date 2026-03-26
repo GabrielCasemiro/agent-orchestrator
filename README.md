@@ -2,6 +2,8 @@
 
 Multi-agent coordination system for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Run multiple Claude Code instances that communicate, delegate tasks, and observe each other's work — with a real-time dashboard.
 
+![Dashboard](docs/dashboard.png)
+
 ## How it works
 
 ```

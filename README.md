@@ -130,6 +130,7 @@ Environment variables:
 | **architect** | generalist | Interactive — you talk to this one. Plans features, creates tasks, reviews work |
 | **backend** | backend | Autonomous — works on API/server code |
 | **frontend** | frontend | Autonomous — works on client-side code |
+| **security** | security | Autonomous — reviews code for vulnerabilities (OWASP, injections, secrets, deps), fixes issues before QA |
 | **qa** | generalist | Autonomous — tests what others built, reports bugs |
 | **devops** | devops | Autonomous — deploys, monitors, rolls back |
 
@@ -142,7 +143,13 @@ architect creates tasks
        ↓
 agents work autonomously
        ↓
-architect creates QA task
+architect creates security review task
+       ↓
+security reviews ──→ PASSED → creates QA task
+       │
+       └──→ FOUND ISSUES → creates "Fix:" task for responsible agent
+                               ↓
+                        agent fixes → security re-reviews
        ↓
 QA validates ──→ PASSED → creates deploy task for devops
        │

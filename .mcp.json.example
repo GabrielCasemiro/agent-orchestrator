@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "orchestrator": {
+      "command": "python",
+      "args": ["mcp_server/server.py"],
+      "env": {
+        "AGENT_NAME": "backend",
+        "AGENT_ROLE": "backend",
+        "AGENT_PROJECT": "my-project",
+        "ORCHESTRATOR_API_URL": "http://localhost:8000"
+      }
+    }
+  }
+}

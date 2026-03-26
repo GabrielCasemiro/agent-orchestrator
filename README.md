@@ -80,9 +80,15 @@ This generates two files in each target directory:
 - `.mcp.json` — gives Claude Code the orchestrator tools
 - `CLAUDE.md` — tells the agent who it is and how to collaborate
 
-### 4. Launch Claude Code
+### 4. Start everything
 
-Open Claude Code in each connected directory. Each instance automatically registers as an agent and can communicate with the others.
+```bash
+make start my-project
+```
+
+This opens Terminal windows for the API, dashboard, all autonomous agents, and the interactive architect. The architect opens last, after all agents have registered.
+
+You can also launch agents manually:
 
 ```bash
 # Terminal 1

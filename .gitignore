@@ -13,6 +13,9 @@ out/
 
 # SQLite
 *.db
+*.db-shm
+*.db-wal
+*.db-journal
 
 # IDE
 .vscode/
@@ -24,4 +27,5 @@ Thumbs.db
 
 # Project-specific
 launch-*.sh
+projects/
 .claude/

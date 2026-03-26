@@ -99,8 +99,22 @@ When you receive a task from QA reporting a bug (title starts with "Fix:"):
 EOF
 fi
 
+# ── Register in project manifest ──────────────────
+MANIFEST_DIR="${ORCHESTRATOR_DIR}/projects"
+MANIFEST="${MANIFEST_DIR}/${PROJECT}.txt"
+mkdir -p "$MANIFEST_DIR"
+
+RESOLVED_DIR="$(cd "$TARGET_DIR" && pwd)"
+# Remove existing entry for this agent, then append
+if [ -f "$MANIFEST" ]; then
+  grep -v "^${AGENT_NAME} " "$MANIFEST" > "${MANIFEST}.tmp" 2>/dev/null || true
+  mv "${MANIFEST}.tmp" "$MANIFEST"
+fi
+echo "${AGENT_NAME} ${AGENT_ROLE} ${RESOLVED_DIR}" >> "$MANIFEST"
+
 echo "Created ${TARGET_DIR}/.mcp.json"
 echo "Updated ${TARGET_DIR}/CLAUDE.md"
+echo "Registered in ${MANIFEST}"
 echo ""
 echo "  Project: ${PROJECT}"
 echo "  Agent:   ${AGENT_NAME} (${AGENT_ROLE})"

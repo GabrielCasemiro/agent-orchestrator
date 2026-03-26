@@ -48,8 +48,8 @@ Each Claude Code instance gets 8 MCP tools:
 ### 1. Install
 
 ```bash
-git clone https://github.com/YOUR_USER/orchestrator.git
-cd orchestrator
+git clone https://github.com/GabrielCasemiro/agent-orchestrator.git
+cd agent-orchestrator
 make install
 ```
 

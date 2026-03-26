@@ -70,8 +70,8 @@ This starts:
 From the orchestrator directory, run:
 
 ```bash
-./connect.sh my-project backend ~/code/my-api
-./connect.sh my-project frontend ~/code/my-frontend
+./connect.sh my-project backend backend ~/code/my-api
+./connect.sh my-project frontend frontend ~/code/my-frontend
 ```
 
 This generates two files in each target directory:

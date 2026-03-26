@@ -97,6 +97,28 @@ When you receive a task from QA reporting a bug (title starts with "Fix:"):
   3. \`send_message("Decided to do [X] because [Y]. Let me know if you disagree.", "architect")\`
   4. Keep working immediately
 EOF
+
+  # ── Role-specific instructions ──────────────────────
+  case "$AGENT_ROLE" in
+    frontend)
+      cat >> "${TARGET_DIR}/CLAUDE.md" <<'ROLE_EOF'
+
+### Frontend Guidelines
+- **ALWAYS** use the `/frontend-design` skill when building or modifying UI components, pages, or layouts. Invoke it before writing any frontend code.
+- This ensures all interfaces are production-grade, visually distinctive, and avoid generic aesthetics.
+ROLE_EOF
+      ;;
+    security)
+      cat >> "${TARGET_DIR}/CLAUDE.md" <<'ROLE_EOF'
+
+### Security Review Guidelines
+- Review all code changes for OWASP Top 10 vulnerabilities: injection, XSS, CSRF, auth flaws, misconfigurations, exposed secrets.
+- Check dependencies for known CVEs.
+- If you find issues, create a "Fix:" task for the responsible agent with a clear description of the vulnerability and how to fix it.
+- Only mark a review as passed when all findings are resolved.
+ROLE_EOF
+      ;;
+  esac
 fi
 
 # ── Register in project manifest ──────────────────

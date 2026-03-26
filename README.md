@@ -69,7 +69,15 @@ This starts:
 
 ### 3. Connect your project
 
-From the orchestrator directory, run:
+Set up the default team (architect, backend, frontend, security, qa, devops):
+
+```bash
+make setup-team my-project ~/code/my-project
+```
+
+This auto-detects matching directories (e.g., if `~/code/my-project/backend/` exists, the backend agent is connected there). Other agents go into `.agents/`.
+
+Or connect agents individually:
 
 ```bash
 #              <project>    <name>      <role>      <target-dir>
@@ -78,7 +86,7 @@ From the orchestrator directory, run:
 ./connect.sh   my-project   architect   generalist  ~/code/my-app
 ```
 
-This generates two files in each target directory:
+Each connected directory gets:
 - `.mcp.json` — gives Claude Code the orchestrator tools
 - `CLAUDE.md` — tells the agent who it is and how to collaborate
 

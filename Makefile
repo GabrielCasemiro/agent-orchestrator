@@ -1,4 +1,4 @@
-.PHONY: install api dashboard dev mcp-install start
+.PHONY: install api dashboard dev mcp-install start setup-team
 
 install: api-install mcp-install dashboard-install
 
@@ -22,6 +22,9 @@ dev:
 	cd api && .venv/bin/uvicorn main:app --reload --host 0.0.0.0 --port 8000 & \
 	cd dashboard && npm run dev & \
 	wait
+
+setup-team:
+	@./setup-team.sh $(wordlist 2,3,$(MAKECMDGOALS))
 
 start:
 	@./start.sh $(filter-out $@,$(MAKECMDGOALS))

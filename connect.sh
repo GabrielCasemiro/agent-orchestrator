@@ -2,20 +2,21 @@
 # Connects a project directory to the orchestrator by generating .mcp.json and CLAUDE.md.
 #
 # Usage:
-#   ./connect.sh <project-name> <agent-name> <agent-role> [target-dir]
+#   ./connect.sh <project-name> <agent-name> [target-dir] [agent-role]
 #
 # Example:
-#   ./connect.sh my-app backend backend ~/projects/my-app
-#   ./connect.sh my-app frontend frontend ~/projects/my-app
+#   ./connect.sh my-app backend ~/projects/my-app
+#   ./connect.sh my-app frontend ~/projects/my-app
+#   ./connect.sh my-app architect ~/projects/my-app generalist
 #
-# Roles: backend, frontend, devops, generalist
+# Role defaults to agent name. Available roles: backend, frontend, devops, generalist
 
 set -e
 
-PROJECT="${1:?Usage: ./connect.sh <project> <agent-name> <role> [target-dir]}"
-AGENT_NAME="${2:?Usage: ./connect.sh <project> <agent-name> <role> [target-dir]}"
-AGENT_ROLE="${3:-generalist}"
-TARGET_DIR="${4:-.}"
+PROJECT="${1:?Usage: ./connect.sh <project> <agent-name> [target-dir] [role]}"
+AGENT_NAME="${2:?Usage: ./connect.sh <project> <agent-name> [target-dir] [role]}"
+TARGET_DIR="${3:-.}"
+AGENT_ROLE="${4:-$AGENT_NAME}"
 ORCHESTRATOR_DIR="$(cd "$(dirname "$0")" && pwd)"
 SERVER_PY="${ORCHESTRATOR_DIR}/mcp_server/server.py"
 VENV_PYTHON="${ORCHESTRATOR_DIR}/mcp_server/.venv/bin/python"
